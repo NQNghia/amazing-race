@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amazing-race</title>
+    <link rel="stylesheet" href="css/gamePlay.css">
+    <script src="js/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="gamePlay" ng-controller="gamePlayController" ng-switch='document.width < document.height'>
+        <div ng-switch-when="true" class="gamePlayWidth">
+
+        </div>
+        <div ng-switch-default class="gamePlayHeight">
+
+        </div>
+    </div>
+</body>
+<script>
+    var app = angular.module('gamePlay'[]);
+    app.controller('gamePlayController', function ($scope) {
+
+    })
+
+</script>
+
+</html>

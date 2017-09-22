@@ -1,0 +1,36 @@
+.gamePlayWidth{
+    width: 100vw;
+    height: 100vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50vw;
+    margin-top: -50vw;
+}
+
+.gamePlayWidth td{
+    width: 5vw;
+    height: 5vw;
+    border: 1px groove;
+}
+
+.gamePlayHeight{
+    width: 100vh;
+    height: 100vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50vh;
+    margin-top: -50vh;
+}
+
+.gamePlayHeight td{
+    width: 5vh;
+    height: 5vh;
+    border: 1px groove;
+}
+
+table{
+    border-collapse: collapse;
+    border: 1px groove;
+}
