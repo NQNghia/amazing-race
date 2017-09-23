@@ -1,0 +1,68 @@
+*{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.logo{
+	width: 812px;
+	height: 352px;
+	margin: 30px auto;
+}
+
+.message{
+	width: 250px;
+	height: 30px;
+	margin: 0px auto;
+	padding-left: 15px;
+}
+
+.message p{
+	font-family: tahoma;
+	font-size: 13px;
+	color: #6ae990;
+}
+
+.inputData{
+	width: 250px;
+	height: 50px;
+	border: 1px solid #6ae990;
+	border-radius: 30px;
+	background-color: #6ae990;
+	padding-top: 11px;
+	padding-left: 5px;
+	margin: 0px auto;
+}
+
+input{
+	background-color: transparent;
+	border: none;
+	cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    width: 220px;
+    height: 24px;
+    font-size: 15px;
+}
+
+.btnPlay{
+	width: 90px;
+	height: 50px;
+	border: 1px solid red;
+	border-radius: 25px;
+	background-color: red;
+	margin: 15px auto 0px auto;
+	padding-top: 13px;
+	padding-left: 18px;
+}
+
+button{
+	background-color: transparent;
+	border: none;
+	cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+}

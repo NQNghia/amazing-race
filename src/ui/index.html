@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Amazing Race</title>
+	<script src="js/angular.min.js"></script>
+	<link href="css/reset.css" type="text/css" rel="stylesheet">
+	<link href="css/style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<div class="logo">
+			<img src="images/amazing_race_logo.jpg" alt="">
+		</div>
+		<div class="register" ng-form="userForm">
+			<div class="message">
+				<p class="error" ng-show="userForm.nickname.$error.required && !userForm.nickname.$pristine">You have not entered a Nickname yet</p>
+			</div>
+			<div class="inputData">
+				<input type="text" placeholder="Nickname" name="nickname" ng-model="nickname" value="" ng-required="true">
+			</div>
+			<div class="btnPlay">
+				<button type="button" ng-disabled="userForm.$invalid" ng-click="navigated()">Play</button>
+			</div>
+		</div>
+	</div>
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope) {
+			$scope.navigated = function() {
+
+			}
+		});
+	</script>
+</body>
+</html>
