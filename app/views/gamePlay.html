@@ -1,62 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Amazing-race</title>
-    <link rel="stylesheet" href="css/gamePlay.css">
-    <script src="js/angular.min.js"></script>
-</head>
-
-<body>
-    <div ng-app="gamePlay" ng-controller="gamePlayController" style="height: 100vh;width: 100vw;">
-        <div class="gamePlay">
-            <table>
-                <tr ng-repeat="row in field.rows">
-                    <td ng-repeat="spot in row" ng-style="getStyle()">
-                        <button ng-if="spot.isClicked" style="background: white" ng-click="clickEvent(spot)"></button>
-                        <button ng-if="!spot.isClicked" style="background: gray;" ng-click="clickEvent(spot)"></button>
-                    </td>
-                </tr>
-            </table>
-        </div>
+<div>
+    <div ng-class="getClass()">
+        <table>
+            <tr ng-repeat="row in field.rows">
+                <td ng-repeat="spot in row">
+                    <button ng-if="spot.isClicked" style="background: white" ng-click="clickEvent(spot)"></button>
+                    <button ng-if="!spot.isClicked" style="background: gray;" ng-click="clickEvent(spot)"></button>
+                </td>
+            </tr>
+        </table>
     </div>
-</body>
-<script>
-    var app = angular.module('gamePlay', []);
-    app.controller('gamePlayController', function ($scope) {
-        $scope.field = createField();
-        $scope.clickEvent = function (spot) {
-            spot.isClicked = !spot.isClicked;
-        };
-        $scope.getStyle = function () {
-            var minD = (window.innerWidth < window.innerHeight) ? 'vw' : 'vh';
-            let style = {
-                'width': 4 + minD,
-                'height': 4 + minD,
-            };
-            return style;
-        };
-    });
-    function createField() {
-        var field = {};
-        field.rows = [];
-        for (var i = 0; i < 20; i++) {
-            var row = [];
-            for (var j = 0; j < 20; j++) {
-                var spot = {};
-                spot.isClicked = true;
-                spot.x = i;
-                spot.y = j;
-                row.push(spot);
-            }
-            field.rows.push(row);
-        }
-        return field;
-    }
-
-</script>
-
-</html>
+</div>

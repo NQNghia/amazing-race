@@ -1,11 +1,17 @@
+/* Based on Width properties on css */
 .gamePlayWidth{
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
     position: absolute;
     top: 50%;
     left: 50%;
     margin-left: -50vw;
-    margin-top: -50vw;
+    margin-top: -50vh;
+}
+
+.gamePlayWidth button{
+    width: 5vw;
+    height: 5vw;
 }
 
 .gamePlayWidth td{
@@ -14,6 +20,7 @@
     border: 1px groove;
 }
 
+/* Based on Height properties on css */
 .gamePlayHeight{
     width: 100vh;
     height: 100vh;
@@ -24,13 +31,23 @@
     margin-top: -50vh;
 }
 
+.gamePlayHeight button{
+    width: 5vh;
+    height: 5vh;
+}
+
 .gamePlayHeight td{
     width: 5vh;
     height: 5vh;
     border: 1px groove;
 }
 
+/* Common css */
 table{
     border-collapse: collapse;
     border: 1px groove;
+}
+
+td{
+    border: 1px groove black;
 }
