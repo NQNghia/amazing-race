@@ -1,10 +1,14 @@
 <div>
     <div ng-class="getClass()">
-        <table>
+        <table ng-mousedown="mouseDown()" ng-mouseup="mouseUp()">
             <tr ng-repeat="row in field.rows">
                 <td ng-repeat="spot in row">
-                    <button ng-if="spot.isClicked" style="background: white" ng-click="clickEvent(spot)"></button>
-                    <button ng-if="!spot.isClicked" style="background: gray;" ng-click="clickEvent(spot)"></button>
+                    <button ng-if="spot.isClicked" style="background: white" ng-mousemove="mouseMove(spot)" 
+                    ng-mouseleave="mouseLeave()" ng-mousedown="mouseDownSpot(spot)">
+                    </button>
+                    <button ng-if="!spot.isClicked" style="background: gray" ng-mousemove="mouseMove(spot)" 
+                    ng-mouseleave="mouseLeave()" ng-mousedown="mouseDownSpot(spot)">
+                    </button>
                 </td>
             </tr>
         </table>

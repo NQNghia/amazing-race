@@ -1,0 +1,18 @@
+<div>
+	<div class="logo">
+		<img src="http://localhost:8088/public/images/amazing_race_logo.jpg" alt="Amazing Race">
+	</div>
+	<div class="register" ng-form="userForm">
+		<div class="message">
+			<p class="error" ng-show="userForm.nickname.$error.required && !userForm.nickname.$pristine">You have not entered a Nickname yet</p>
+		</div>
+		<div class="inputData">
+			<input type="text" placeholder="Nickname" name="nickname" ng-model="nickname" value="" ng-required="true">
+		</div>
+		<div class="btnPlay">
+			<button type="button" ng-disabled="userForm.$invalid" ng-click="navigated()">
+				<a href="http://localhost:8088/#/play-game">Play</a>
+			</button>
+		</div>
+	</div>
+</div>

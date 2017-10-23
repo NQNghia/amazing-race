@@ -9,5 +9,11 @@ app.config(function ($routeProvider) {
             controller: 'GamePlayController',
             templateUrl: '/app/views/gamePlay.html'
         })
-        .otherwise({ redirectTo: '/play-game' });
+        //Define a route that has a route parameter in it (:playGame)
+        .when('/login',
+        {
+            controller: 'GamePlayController',
+            templateUrl: '/app/views/login.html'
+        })
+        .otherwise({ redirectTo: '/login' });
 });
