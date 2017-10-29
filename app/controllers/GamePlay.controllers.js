@@ -1,38 +1,68 @@
-app.controller('GamePlayController', function ($scope) {
-    // $scope dataBinding
-    $scope.field = createField();
+app.controller('GamePlayController', function ($scope, socket, gamePlayService, beforeUnload) {
+    //I like to have an init() for controllers that need to perform some initialization. Keeps things in
+    //one place...not required though especially in the simple example below
 
-    // Event Handler
-    var dragging = false;
-    var isEnter = false;
-    var count = 0;
-    $scope.mouseDownSpot = function (spot) {
-        spot.isClicked = false;
+    // Global nessessary variables
+    // at the start of the game, curPos is start point
+    var curPos = {
+        x: 19,
+        y: 0,
     };
+    var stopPos = {
+        x: 0,
+        y: 19,
+    };
+    // playerNum start by 1
+    var playerNum = null;
 
-    $scope.mouseDown = function () {
-        dragging = true;
+    // color set for spot
+    // -2 (gray) is wall, -1 (white) is available spot (path), 0 (red) is start and stop point
+    var colors = ['gray', 'white', 'red', 'yellow', 'blue', 'green', 'cyan', 'purple'];
+    init();
+
+    function init() {
+        // emit to server to get a player number
+        socket.emit('newPlayer');
     }
 
-    $scope.mouseMove = function (spot) {
-        // console.log(dragging);
-        if (dragging && !isEnter) {
-            spot.isClicked = false;
-            isMove = true;
-            count++;
-        } else return;
-    }
+    // socket events handlers
+    socket.on('newPlayer', function (playerNumber) {
+        if (playerNum != null) return;
+        else if (playerNumber != null) {
+            // apply scope to load more speed
+            $scope.$apply(function () {
+                // get playerNum
+                playerNum = playerNumber;
+                // creating field
+                $scope.field = gamePlayService.createField(curPos, stopPos, playerNum);
+            });
+        }
+    })
 
-    $scope.mouseLeave = function (spot) {
-        isEnter = false;
-    }
+    // Register scope envents
+    // onload events
 
-    $scope.mouseUp = function () {
-        dragging = false;
-        console.log(count);
-        count = 0;
-    }
+    // keydown envents
+    var $doc = angular.element(document);
+    $doc.on('keydown', function (e) {
+        $scope.$apply(function () {
+            $scope.field.rows[curPos.x][curPos.y].value = -1;
+            curPos = gamePlayService.getNewPos(curPos, e.keyCode);
+            // Stub- server will emit event to clients to update event
+            $scope.field.rows[curPos.x][curPos.y].value = playerNum;
+        })
+    });
+    $scope.$on('$destroy', function () {
+        $doc.off('keydown', handler);
+    })
 
+    // unload events (close or reload tab)
+    $scope.$on('onUnload', function (e) {
+        if (playerNum == null) return;
+        socket.emit('Unload', playerNum);
+    });
+
+    // $scope utilities functions
     // getClass for the css receiver to make Responsive website
     $scope.getClass = function () {
         className = 'gamePlayHeight';
@@ -42,21 +72,9 @@ app.controller('GamePlayController', function ($scope) {
         return className;
     };
 
-    // create UI (playing Field) for website
-    function createField() {
-        var field = {};
-        field.rows = [];
-        for (var i = 0; i < 20; i++) {
-            var row = [];
-            for (var j = 0; j < 20; j++) {
-                var spot = {};
-                spot.isClicked = true;
-                spot.x = i;
-                spot.y = j;
-                row.push(spot);
-            }
-            field.rows.push(row);
-        }
-        return field;
-    };
+    // getStyle 
+    $scope.getStyle = function (spot) {
+        return colors[spot.value + 2];
+    }
+
 })
