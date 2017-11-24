@@ -52,3 +52,4 @@ io.on('connection', function (socket) {
 });
 
 http.listen(8088);
+console.log('server is starting at localhost:8088');
