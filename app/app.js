@@ -12,7 +12,7 @@ app.config(function ($routeProvider) {
         //Define a route that has a route parameter in it (:login)
         .when('/login',
         {
-            controller: 'GamePlayController',
+            controller: '',
             templateUrl: '/app/views/login.html'
         })
         .otherwise({ redirectTo: '/login' });
@@ -48,5 +48,18 @@ app.factory('beforeUnload', function ($rootScope, $window) {
     };
     return {};
 }).run(function (beforeUnload) {
+    // Must invoke the service at least once
+});
+
+// Change location events registers
+app.factory('beforeLocationChanged', function ($rootScope, $route, $location) {
+    //Bind the `$locationChangeSuccess` event on the rootScope, so that we dont need to 
+    //bind in induvidual controllers.
+
+    $rootScope.$on('$onChangeLocation', function () {
+        // $rootScope.actualLocation = $location.path();
+    });
+    return {};
+}).run(function (beforeLocationChanged) {
     // Must invoke the service at least once
 });

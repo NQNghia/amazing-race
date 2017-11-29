@@ -53,8 +53,14 @@ app.controller('GamePlayController', function ($scope, socket, gamePlayService, 
         })
     });
     $scope.$on('$destroy', function () {
-        $doc.off('keydown', handler);
+        $doc.off('keydown');
     })
+
+    // back or next button in browser events (change location in this tab)
+    $scope.$on('$locationChangeSuccess', function () {
+        if (playerNum == null) return;
+        socket.emit('Unload', playerNum);
+    });
 
     // unload events (close or reload tab)
     $scope.$on('onUnload', function (e) {
