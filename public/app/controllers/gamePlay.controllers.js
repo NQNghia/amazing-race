@@ -40,22 +40,22 @@
         init();
 
         function init() {
-            // emit to server to get a player number
-            socket.emit('newPlayer');
+            // creating field
+            $scope.field = gamePlayService.createField(curPos, stopPos);
         }
 
         // socket events handlers
         socket.on('newPlayer', function (playerNumber) {
-            if (playerNum != null) return;
-            else if (playerNumber != null) {
-                // apply scope to load more speed
-                $scope.$apply(function () {
-                    // get playerNum
-                    playerNum = playerNumber;
-                    // creating field
-                    $scope.field = gamePlayService.createField(curPos, stopPos, playerNum);
-                });
-            }
+            // if (playerNum != null) return;
+            // else if (playerNumber != null) {
+            //     // apply scope to load more speed
+            //     $scope.$apply(function () {
+            //         // get playerNum
+            //         playerNum = playerNumber;
+            //         // creating field
+            //         $scope.field = gamePlayService.createField(curPos, stopPos, playerNum);
+            //     });
+            // }
         })
 
         // Register scope envents

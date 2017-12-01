@@ -2,7 +2,7 @@
 //each doing the same thing just structuring the functions/data differently.
 app.service('gamePlayService', function () {
     // create UI (playing Field) for website
-    this.createField = function (startPos, stopPos, playerNum) {
+    this.createField = function (startPos, stopPos) {
         // console.log('creating field');
         var field = {};
         field.rows = [];
@@ -18,7 +18,7 @@ app.service('gamePlayService', function () {
             field.rows.push(row);
         }
         // creating start and stop point
-        field.rows[startPos.x][startPos.y].value = playerNum;
+        field.rows[startPos.x][startPos.y].value = 2;
         field.rows[stopPos.x][stopPos.y].value = 0;
         return field;
     };
