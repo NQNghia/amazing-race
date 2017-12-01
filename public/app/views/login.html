@@ -2,17 +2,15 @@
 	<div class="logo">
 		<img src="images/amazing_race_logo.jpg" alt="Amazing Race">
 	</div>
-	<div class="register" ng-form="userForm">
-		<div class="message">
-			<p class="error" ng-show="userForm.nickname.$error.required && !userForm.nickname.$pristine">You have not entered a Nickname yet</p>
-		</div>
-		<div class="inputData">
-			<input type="text" placeholder="Nickname" name="nickname" ng-model="nickname" value="" ng-required="true">
-		</div>
-		<div class="btnPlay">
-			<button type="button" ng-disabled="userForm.$invalid" ng-click="navigated()">
-				<a href="#/play-game">Play</a>
-			</button>
-		</div>
-	</div>
+	<form class="panel-body ng-pristine ng-valid" ng-submit="join()">
+        <label>
+          Username
+        </label>
+        <input class="input-lg form-control ng-pristine ng-valid"
+                    maxlength="20"
+                    ng-model="name"
+                    type="text">
+        <br>
+        <input class="btn btn-block btn-primary" type="submit" value="Join">
+      </form>
 </div>
