@@ -24,12 +24,12 @@
         });
 
         var curPos = {
-            x: 19,
+            x: 14,
             y: 0,
         };
         var stopPos = {
             x: 0,
-            y: 19,
+            y: 14,
         };
         // playerNum start by 1
         var playerNum = null;
@@ -69,7 +69,9 @@
                 curPos = gamePlayService.getNewPos(curPos, e.keyCode);
                 // Stub- server will emit event to clients to update event
                 $scope.field.rows[curPos.x][curPos.y].value = playerNum;
-            })
+            });
+
+            
         });
         $scope.$on('$destroy', function () {
             $doc.off('keydown');

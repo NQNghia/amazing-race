@@ -2,13 +2,16 @@
 //each doing the same thing just structuring the functions/data differently.
 app.service('gamePlayService', function () {
     // create UI (playing Field) for website
+    var table_width = 15,
+        table_height = 15;
     this.createField = function (startPos, stopPos) {
         // console.log('creating field');
         var field = {};
         field.rows = [];
-        for (var i = 0; i < 20; i++) {
+
+        for (var i = 0; i < table_width; i++) {
             var row = [];
-            for (var j = 0; j < 20; j++) {
+            for (var j = 0; j < table_height; j++) {
                 var spot = {};
                 spot.value = -1;
                 spot.x = i;
@@ -50,7 +53,7 @@ app.service('gamePlayService', function () {
 
     this.isLegalPos = function (position) {
         // check if the position is in field or not?
-        if (0 <= position.x && position.x < 20 && 0 <= position.y && position.y < 20) {
+        if (0 <= position.x && position.x < table_width && 0 <= position.y && position.y < table_height) {
             return true;
         }
         return false;
