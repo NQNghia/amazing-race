@@ -8,23 +8,6 @@ var port = 8088;
 app.use(express.static(path.join(__dirname, 'public')));
 var countPlayer = 0;
 var users = [];
-var players = [
-    {
-        'isUsed': false
-    },
-    {
-        'isUsed': false
-    },
-    {
-        'isUsed': false
-    },
-    {
-        'isUsed': false
-    },
-    {
-        'isUsed': false
-    },
-];
 
 // event handler in server
 io.on('connection', function (socket) {
@@ -36,7 +19,8 @@ io.on('connection', function (socket) {
 
         var userObj = {
             nickname: data.nickname,
-            socketid: socket.id
+            socketid: socket.id,
+            color: 'red'
         }
 
         users.push(userObj);
@@ -45,6 +29,13 @@ io.on('connection', function (socket) {
 
     socket.on('get-users', function () {
       socket.emit('all-users', users);
+    });
+
+    socket.on('update-position', function (data) {
+        io.emit('update-position', {
+            position: data.current,
+            nickname: data.nickname
+        })
     })
     socket.on('Unload', function (i) {
         countPlayer--;
