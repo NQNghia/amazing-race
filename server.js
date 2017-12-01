@@ -1,8 +1,11 @@
 var express = require('express'),
     app = express();
+var path = require('path');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-app.use(express.static(__dirname + ''));
+var port = 8088;
+
+app.use(express.static(path.join(__dirname, 'public')));
 var countPlayer = 0;
 var players = [
     {
@@ -51,5 +54,6 @@ io.on('connection', function (socket) {
     })
 });
 
-http.listen(8088);
-console.log('server is starting at localhost:8088');
+http.listen(port, function () {
+    console.log('server is starting at localhost: ' + port);
+});
