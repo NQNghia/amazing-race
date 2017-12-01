@@ -11,6 +11,7 @@
         // at the start of the game, curPos is start point
 
         $scope.mynickname = $localStorage.nickName;
+        $scope.winners = [];
         var nickname = $scope.mynickname;
         console.log("Nickname: ", nickname);
         // request to get all user currently join
@@ -22,7 +23,10 @@
                 return item.nickname != nickname;
             })
         });
-
+        socket.on('update-leaderboard', function (winners) {
+            console.log(winners);
+            $scope.winners = winners;
+        });
         socket.on('update-position', function (data) {
             console.log("update pos:", data);
             // stub for color ==1
@@ -75,10 +79,10 @@
         $doc.on('keydown', function (e) {
             oldPos = curPos;
             // $scope.$apply(function () {
-                // $scope.field.rows[curPos.x][curPos.y].value = -1;
-                curPos = gamePlayService.getNewPos(curPos, e.keyCode);
-                // Stub- server will emit event to clients to update event
-                // $scope.field.rows[curPos.x][curPos.y].value = playerNum;
+            // $scope.field.rows[curPos.x][curPos.y].value = -1;
+            curPos = gamePlayService.getNewPos(curPos, e.keyCode);
+            // Stub- server will emit event to clients to update event
+            // $scope.field.rows[curPos.x][curPos.y].value = playerNum;
             // });
             console.log(oldPos);
             socket.emit('update-position', {

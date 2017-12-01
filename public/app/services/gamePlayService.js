@@ -21,8 +21,8 @@ app.service('gamePlayService', function () {
             field.rows.push(row);
         }
         // creating start and stop point
-        field.rows[startPos.x][startPos.y].value = 2;
-        field.rows[stopPos.x][stopPos.y].value = 0;
+        field.rows[startPos.x][startPos.y].value = 'white';
+        field.rows[stopPos.x][stopPos.y].value = 'red';
         return field;
     };
 

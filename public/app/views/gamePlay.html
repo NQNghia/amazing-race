@@ -1,9 +1,13 @@
 <div class="jumbotron">
-  <h2> Welcome <b>{{mynickname}}</b></h2>
+    <h2> Welcome
+        <b>{{mynickname}}</b>
+    </h2>
 </div>
 <div class="row">
     <div class="col-md-4">
-        
+        <ul style="margin-left:50px;">
+            <li ng-repeat="winner in winners track by $index">{{$index}}. {{winner}}</li>
+        </ul>
     </div>
     <div class="col-md-8 col-md-offset-2">
         <div class="gamePlay">
