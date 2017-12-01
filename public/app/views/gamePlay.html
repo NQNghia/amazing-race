@@ -4,9 +4,13 @@
     </h2>
 </div>
 <div class="row">
-    <div class="col-md-4">
-        <ul style="margin-left:50px;">
-            <li ng-repeat="winner in winners track by $index">{{$index}}. {{winner}}</li>
+    <div class="col-md-2">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="winner in winners track by $index">
+                <span class="badge">{{$index}}</span>
+                <b>{{winner}}</b>
+                <div class="color" style="width:20px;height:20px;background-color:#4f27f4;display: inline-block;float: right;margin-right: 10px;"></div>
+            </li>
         </ul>
     </div>
     <div class="col-md-8 col-md-offset-2">

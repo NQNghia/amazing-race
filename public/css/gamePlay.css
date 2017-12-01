@@ -1,24 +1,38 @@
 /* GamePlay on css */
-.gamePlay{
+
+.gamePlay {
     width: 50%;
     height: 50%;
 }
 
-.gamePlay button{
+.gamePlay button {
     width: 100%;
     height: 30px;
 }
 
-.gamePlay table{
+.gamePlay table {
     border-collapse: collapse;
     border: 1px groove;
     width: 100%;
 }
 
-.gamePlay td{
+.gamePlay td {
     border: 1px groove black;
 }
 
-.gamePlay tr{
+.gamePlay tr {
     height: 30px;
+}
+
+
+/* Leaderboard */
+
+.list-group-item {
+    font-size: 15px;
+}
+
+.list-group-item-wait {
+    list-style: none;
+    font-size: 15px;
+    font-weight: bold;
 }
