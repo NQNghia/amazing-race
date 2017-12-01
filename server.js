@@ -9,6 +9,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 var countPlayer = 0;
 var users = [];
 
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 // event handler in server
 io.on('connection', function (socket) {
 
@@ -20,7 +28,7 @@ io.on('connection', function (socket) {
         var userObj = {
             nickname: data.nickname,
             socketid: socket.id,
-            color: 'red'
+            color: getRandomColor(),
         }
 
         users.push(userObj);
@@ -32,10 +40,15 @@ io.on('connection', function (socket) {
     });
 
     socket.on('update-position', function (data) {
+        var user = users.find(function (user) {
+            return user.nickname === data.nickname;
+        });
+        console.log("current user update: ", user);
         io.emit('update-position', {
             oldPosition: data.old,
             position: data.current,
-            nickname: data.nickname
+            nickname: data.nickname,
+            color: user.color
         })
     })
     socket.on('Unload', function (i) {

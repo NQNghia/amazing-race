@@ -26,10 +26,10 @@
         socket.on('update-position', function (data) {
             console.log("update pos:", data);
             // stub for color ==1
-            if ($scope.field.rows[data.oldPosition.x][data.oldPosition.y].value == 1) {
-                $scope.field.rows[data.oldPosition.x][data.oldPosition.y].value = -1;
+            if ($scope.field.rows[data.oldPosition.x][data.oldPosition.y].value == data.color) {
+                $scope.field.rows[data.oldPosition.x][data.oldPosition.y].value = 'white';
             }
-            $scope.field.rows[data.position.x][data.position.y].value = 1;
+            $scope.field.rows[data.position.x][data.position.y].value = data.color;
         })
         var curPos = {
             x: 14,
@@ -115,7 +115,7 @@
 
         // getStyle 
         $scope.getStyle = function (spot) {
-            return colors[spot.value + 2];
+            return spot.value;
         }
     }
 })();
