@@ -1,12 +1,7 @@
 /* Based on Width properties on css */
 .gamePlayWidth{
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -50vw;
-    margin-top: -50vh;
+    width: 50vh;
+    height: 50vh;
 }
 
 .gamePlayWidth button{
@@ -22,13 +17,8 @@
 
 /* Based on Height properties on css */
 .gamePlayHeight{
-    width: 100vh;
-    height: 100vh;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -50vh;
-    margin-top: -50vh;
+    width: 50%;
+    height: 50%;
 }
 
 .gamePlayHeight button{

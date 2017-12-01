@@ -1,12 +1,19 @@
-<h3>Game</h3>
-<div>
-    <div ng-class="getClass()">
-        <table ng-mousedown="mouseDown()" ng-mouseup="mouseUp()" ng-keydown="key($event)">
-            <tr ng-repeat="row in field.rows">
-                <td ng-repeat="spot in row">
-                    <button ng-style="{'background':getStyle(spot)}"> </button>
-                </td>
-            </tr>
-        </table>
+<div class="jumbotron">
+  <h2> Welcome <b>{{mynickname}}</b></h2>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        
+    </div>
+    <div class="col-md-8">
+        <div class="gamePlayWidth">
+            <table ng-mousedown="mouseDown()" ng-mouseup="mouseUp()" ng-keydown="key($event)">
+                <tr ng-repeat="row in field.rows">
+                    <td ng-repeat="spot in row">
+                        <button ng-style="{'background':getStyle(spot)}"> </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
