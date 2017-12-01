@@ -5,9 +5,9 @@
     <div class="col-md-4">
         
     </div>
-    <div class="col-md-8">
-        <div class="gamePlayWidth">
-            <table ng-mousedown="mouseDown()" ng-mouseup="mouseUp()" ng-keydown="key($event)">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="gamePlay">
+            <table class="main-table" ng-mousedown="mouseDown()" ng-mouseup="mouseUp()" ng-keydown="key($event)">
                 <tr ng-repeat="row in field.rows">
                     <td ng-repeat="spot in row">
                         <button ng-style="{'background':getStyle(spot)}"> </button>
