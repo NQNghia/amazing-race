@@ -7,6 +7,7 @@ var port = 8088;
 
 app.use(express.static(path.join(__dirname, 'public')));
 var countPlayer = 0;
+var users = [];
 var players = [
     {
         'isUsed': false
@@ -28,22 +29,23 @@ var players = [
 // event handler in server
 io.on('connection', function (socket) {
 
-    socket.on('newPlayer', function () {
-        if (countPlayer >= 5) return;
-        let i = null;
-        for (let j = 1; j <= players.length; j++) {
-            // if the player slot is available
-            if (!players[j - 1].isUsed) {
-                players[j - 1].isUsed = true;
-                i = j;
-                countPlayer++;
-                break;
-            }
-        }
-        // return player number for user
-        io.emit('newPlayer', i);
-    });
+    socket.on('join', function (data) {
+        console.log("Join: ", data);
+        socket.nickname = data.nickname;
+        users[socket.nickname] = socket;
 
+        var userObj = {
+            nickname: data.nickname,
+            socketid: socket.id
+        }
+
+        users.push(userObj);
+        io.emit('all-users', users);
+    })
+
+    socket.on('get-users', function () {
+      socket.emit('all-users', users);
+    })
     socket.on('Unload', function (i) {
         countPlayer--;
         console.log('unload: ' + i);
