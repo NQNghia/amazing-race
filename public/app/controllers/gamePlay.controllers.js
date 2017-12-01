@@ -25,12 +25,17 @@
 
         socket.on('update-position', function (data) {
             console.log("update pos:", data);
+            // stub for color ==1
+            if ($scope.field.rows[data.oldPosition.x][data.oldPosition.y].value == 1) {
+                $scope.field.rows[data.oldPosition.x][data.oldPosition.y].value = -1;
+            }
             $scope.field.rows[data.position.x][data.position.y].value = 1;
         })
         var curPos = {
             x: 14,
             y: 0,
         };
+        var oldPos = curPos;
         var stopPos = {
             x: 0,
             y: 14,
@@ -68,14 +73,16 @@
         // keydown envents
         var $doc = angular.element(document);
         $doc.on('keydown', function (e) {
-            $scope.$apply(function () {
+            oldPos = curPos;
+            // $scope.$apply(function () {
                 // $scope.field.rows[curPos.x][curPos.y].value = -1;
                 curPos = gamePlayService.getNewPos(curPos, e.keyCode);
                 // Stub- server will emit event to clients to update event
                 // $scope.field.rows[curPos.x][curPos.y].value = playerNum;
-            });
-
+            // });
+            console.log(oldPos);
             socket.emit('update-position', {
+                old: oldPos,
                 current: curPos,
                 nickname: $scope.mynickname
             })

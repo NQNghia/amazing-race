@@ -28,11 +28,12 @@ io.on('connection', function (socket) {
     })
 
     socket.on('get-users', function () {
-      socket.emit('all-users', users);
+        socket.emit('all-users', users);
     });
 
     socket.on('update-position', function (data) {
         io.emit('update-position', {
+            oldPosition: data.old,
             position: data.current,
             nickname: data.nickname
         })
@@ -40,7 +41,7 @@ io.on('connection', function (socket) {
     socket.on('Unload', function (i) {
         countPlayer--;
         console.log('unload: ' + i);
-        players[i-1].isUsed = false;
+        players[i - 1].isUsed = false;
     });
     socket.on('disconnection', function () {
         console.log('disconnection');
